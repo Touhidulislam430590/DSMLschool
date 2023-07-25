@@ -1,4 +1,6 @@
 {% extends 'base.html' %}
+{% load static %}
+
 
 {% block title %}Home{% endblock title %}
 
@@ -20,13 +22,14 @@
                     <div class="text-white">
                         <h1>Python</h1>
                         <p>Learn Python complete in easy way</p>
+                        <a class="btn btn-primary" href="/python/" role="button">Learn</a>
                     </div>
                 </div>
 
 
                 <div class="col-md-6 d-flex justify-content-center align-items-center">
                     <div class="">
-                        <img src="https://png2.cleanpng.com/sh/7cd15974bea7147d8bed366afc2e2eb3/L0KzQYm4UcI5N5x9eZH0aYP2gLBuTgB6fJl0hp95cnBqgrL0jflvb15neeVyY4OwdrF5TfFje5DxjeZuLXLod7r1jvVze15ygdVxaXfkfn73mgRpd58yjeVucj3qgrF8kL02NZt6hJ87LUG7PYbphvVnQWM3SNg5MHS5PoWCV8M0P2g7Sac9M0S2RoaAWMA3OWYziNDw/kisspng-python-programming-basics-for-absolute-beginners-michigan-python-user-group-5-jul-2-18-5bfef9220f00d6.4973377615434365780615.png" alt="" height="200px" width="200px">
+                        <img src="{% static 'img/Python-logo-notext.svg.png' %}" alt="" height="200px" width="200px">
                     </div>
                 </div>
         </div>
