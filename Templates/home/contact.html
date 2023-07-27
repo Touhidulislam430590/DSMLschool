@@ -1,0 +1,36 @@
+{% extends 'home/base.html' %}
+{% load static %}
+
+{% block title %}Contact Us{% endblock title %}
+
+
+{% block content %}
+
+<div>
+    <img src="{% static 'img/idea generate.jpg' %}" alt="">
+</div>
+
+<div class="container my-5">
+    <div class="row">
+        <div class="col-md-6"></div>
+        <div class="col-md-6">
+            <form action="" method="POST">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Email address</label>
+                    <input type="email" class="form-control" name="email" id="exampleFormControlInput1" placeholder="name@example.com">
+                </div>
+                
+                <div class="mb-3">
+                    <label for="exampleFormControlTextarea1" class="form-label">Message</label>
+                    <textarea class="form-control" name="message" id="exampleFormControlTextarea1" rows="3"></textarea>
+                </div>
+                <button type="submit" class="btn btn-success">Send</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}
+

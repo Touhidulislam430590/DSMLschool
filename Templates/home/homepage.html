@@ -1,0 +1,88 @@
+{% extends 'home/base.html' %}
+{% load static %}
+
+
+{% block title %}Home{% endblock title %}
+
+
+{% block content %}
+
+
+<div class="container">
+    {% comment %} banner section start here  {% endcomment %}
+
+
+    {% comment %} banner section end here  {% endcomment %}
+
+
+    {% comment %} section 1 start here {% endcomment %}
+    <section id="python">
+        <div class="row bg-dark" style="height: 400px;">
+            <div class="col-md-6 d-flex justify-content-center align-items-center">
+                    <div class="text-white">
+                        <h1>Python</h1>
+                        <p>Learn Python complete in easy way</p>
+                        <a class="btn btn-primary" href="/python/" role="button">Explore</a>
+                    </div>
+                </div>
+
+
+                <div class="col-md-6 d-flex justify-content-center align-items-center">
+                    <div class="">
+                        <img src="{% static 'img/Python-logo-notext.svg.png' %}" alt="" height="200px" width="200px">
+                    </div>
+                </div>
+        </div>
+    </section>
+    {% comment %} section 1 end here {% endcomment %}
+
+
+    {% comment %} section 1 start here {% endcomment %}
+    <section id="numpy">
+        <div class="row bg-light" style="height: 400px;">
+            <div class="col-md-6 d-flex justify-content-center align-items-center">
+                    <div class="">
+                        <h1>NumPy</h1>
+                        <p>Learn Python complete in easy way</p>
+                        <a class="btn btn-primary" href="/python/" role="button">Explore</a>
+                    </div>
+                </div>
+
+
+                <div class="col-md-6 d-flex justify-content-center align-items-center">
+                    <div class="">
+                        <img src="{% static 'img/Numpy logo.png' %}" alt="" height="200px" width="300px">
+                    </div>
+                </div>
+        </div>
+    </section>
+    {% comment %} section 1 end here {% endcomment %}
+    
+    
+    {% comment %} section 3 start here {% endcomment %}
+    <section id="pandas">
+        <div class="row bg-dark" style="height: 400px;">
+            <div class="col-md-6 d-flex justify-content-center align-items-center">
+                    <div class="text-white">
+                        <h1>Pandas</h1>
+                        <p>Learn Python complete in easy way</p>
+                        <a class="btn btn-primary" href="/python/" role="button">Explore</a>
+                    </div>
+                </div>
+
+
+                <div class="col-md-6 d-flex justify-content-center align-items-center">
+                    <div class="">
+                        <img src="{% static 'img/Pandas_logo.svg.png' %}" alt="" height="200px" width="300px">
+                    </div>
+                </div>
+        </div>
+    </section>
+    {% comment %} section 3 end here {% endcomment %}
+
+
+
+
+</div>
+
+{% endblock content %}

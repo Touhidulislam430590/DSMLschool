@@ -1,11 +1,15 @@
-{% extends 'base.html' %}
+{% extends 'home/base.html' %}
+{% load static %}
 
 {% block title %}About Us{% endblock title %}
 
 
 {% block content %}
+<div>
+    <img src="{% static 'img/idea generate.jpg' %}" alt="">
+</div>
 <div class="container">
-    <h2>About Us</h2>
+    <h2 class="mt-5">About Us</h2>
     <hr>
     <p>Welcome to <strong>DSMLschool</strong>!
         <br>
