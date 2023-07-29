@@ -6,9 +6,9 @@ from .models import tutorial
 
 def home(request):
     posts = tutorial.objects.all()
-    return render(request, "content/home.html", {'posts':posts})
+    return render(request, "content/python/home.html", {'posts':posts})
 
 def content(request, pk):
     posts = tutorial.objects.all()
     post = get_object_or_404(tutorial, pk=pk)
-    return render(request, 'content/content.html', {'content':post, 'posts':posts})
+    return render(request, 'content/python/content.html', {'content':post, 'posts':posts})
