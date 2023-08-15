@@ -1,5 +1,12 @@
 {% extends 'content/python/home.html' %}
 
+{% block headseo %}
+    {% if content %}
+        <meta name="Keywords" content="{{ content.meta_tags }}">
+        <meta name="Description" content="{{ content.meta_description }}">
+    {% endif %}	
+{% endblock headseo %}
+
 {% block title %}
     {{ content.title }}
 {% endblock title %}
@@ -13,7 +20,7 @@
 {% block content %}
     <div class="">
         {% if content %}
-        <h2>{{ content.title }}</h2>
+        <h1 class="my-5">{{ content.title }}</h1>
 
         <div>{{ content.content|safe }}</div>
         {% endif %}

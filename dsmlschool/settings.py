@@ -37,11 +37,18 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     'pytuto',
     'home',
 
-    'ckeditor'
+    'ckeditor',
+    'django_check_seo',
+    'cms',
+    'menus',
+    'treebeard',
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

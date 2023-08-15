@@ -1,2 +1,3 @@
 ckeditor
 mysql-connector-python
+django_check_seo
