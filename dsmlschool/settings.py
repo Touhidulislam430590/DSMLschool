@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'pytuto',
     'home',
+    'numpytuto',
+    'pandastuto',
 
     'ckeditor',
     'django_check_seo',

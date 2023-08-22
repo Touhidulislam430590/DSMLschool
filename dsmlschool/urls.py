@@ -16,8 +16,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+
+# Django Admin Panel Customization
+admin.site.site_header = 'DSMLschool Admin'
+admin.site.site_title = 'Admin Panel'
+admin.site.index_title = 'Data Science Machine Learning School Administration Panel'
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('home.urls')),
-    path('python/', include('pytuto.urls'))
+    path('python/', include('pytuto.urls')),
+    path('numpy/', include('numpytuto.urls')),
+    path('pandas/', include('pandastuto.urls')),
 ]
