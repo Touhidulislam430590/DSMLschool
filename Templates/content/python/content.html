@@ -18,6 +18,7 @@
 
 
 {% block content %}
+
     <div class="">
         {% if content %}
         <h1 class="my-5">{{ content.title }}</h1>
@@ -25,6 +26,14 @@
         <div>{{ content.content|safe }}</div>
         {% endif %}
     </div>
+
+    <div class="py-3">
+        <a href="{% url 'py:contentIdprev' content.id %}" class="btn btn-info">Previous</a>
+        
+        <a href="{% url 'py:contentId' content.id %}" class="btn btn-success">Next</a>
+    </div>
+
+    
 
 {% endblock %}
 

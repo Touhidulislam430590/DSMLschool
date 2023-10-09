@@ -1,6 +1,6 @@
 from django.contrib import admin
-from .models import tutorial
+from .models import pytutorial
 
 # Register your models here.
 
-admin.site.register(tutorial)
+admin.site.register(pytutorial)

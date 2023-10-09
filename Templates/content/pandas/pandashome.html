@@ -22,15 +22,49 @@
 		
 		
 		{% comment %} navbar section start {% endcomment %}
-		{% include 'nav_main.html' %}
-		{% include 'content/nav_content.html' %}
+		
+		<div class="d-none d-md-block">
+			{% include 'nav_main.html' %}
+			{% include 'content/nav_content.html' %}
+		</div>
+		
 		{% comment %} navbar section end {% endcomment %}
 
+
+		{% comment %} mobile navbar start  {% endcomment %}
+
+		<nav class="navbar navbar-expand-lg bg-body-tertiary d-md-none fixed-top">
+			<div class="container-fluid">
+				<a class="navbar-brand text-success" href="/home"><b>DSMLschool</b></a>
+				<a class="btn" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+					<span class="navbar-toggler-icon"></span>
+				</a>
+				
+				<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+					<div class="offcanvas-header">
+						<h5 class="offcanvas-title" id="offcanvasExampleLabel">Pandas</h5>
+						<button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+					</div>
+					
+					<div class="offcanvas-body">
+						<ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 90px;">
+							{% for post in posts %}
+							<li class="nav-item border-bottom">
+								<a class="nav-link active" aria-current="page" href="{% url 'pandas:pandascontent' post.slug %}">{{ post.title }}</a>
+							</li>
+							{% endfor %}
+						</ul>
+					</div>
+				</div>
+			</div>
+		</nav>
+
+		{% comment %} mobile navbar end  {% endcomment %}
 
 
 		<div class="container-fluid">
 			<div class="row">
-				<div class="col-md-2 border-end">
+				<div class="col-md-2 border-end d-none d-md-block">
 					<h3 class="my-5">
 						Pandas Tutorial
 					</h3>
@@ -38,8 +72,8 @@
 					<div class="sidebar-sticky">
 						<table class="table">
 							{% for post in posts %}
-							<tr class="table-active">
-								<td><a class="nav-link py-0 my-0 text-dark" href="{% url 'py:content' post.pk %}">{{ post.title }}</a></td>
+							<tr class="{% if post.slug == request.resolver_match.kwargs.slug %}table-active{% endif %}">
+								<td><a class="nav-link py-0 my-0 text-dark" href="{% url 'pandas:pandascontent' post.slug %}">{{ post.title }}</a></td>
 							</tr>							
 							{% endfor %}
 						</table>
@@ -49,7 +83,102 @@
 
 				<div class="col-md-7">
 					{% block content %}
-					<p>Hello Pandas </p>
+
+					<div class="pt-3"></div>
+					
+					<h2 class="pt-4 pb-3 mt-3">An Introduction to Python Pandas: Your Data Manipulation Powerhouse</h2>
+					<p>In the realm of data analysis and manipulation, Python's pandas library reigns supreme. With its intuitive and powerful tools, pandas provides data professionals, scientists, and enthusiasts with the ability to easily handle, clean, and analyze data. In this article, we'll delve into the world of pandas, exploring what it is, why it's essential, and how you can get started harnessing its capabilities.</p>
+
+					<h3>What is Pandas?</h3>
+					<p>Pandas is an open-source Python library that provides data structures and functions designed for efficient data manipulation and analysis. Developed by Wes McKinney, pandas is built on top of the NumPy library, which makes it particularly adept at working with numerical data. The name "pandas" is derived from the term "panel data," a common term used in statistics and econometrics.</p>
+
+					<h3>Why Choose Pandas?</h3>
+					<h4>1. Data Handling Simplicity:</h4>
+					<p>Pandas introduces two essential data structures: the Series and the DataFrame. A Series is a one-dimensional array-like structure that can hold various data types, while a DataFrame is a two-dimensional table, similar to a spreadsheet or SQL table. These structures simplify data representation and manipulation, allowing you to work with labeled and structured data seamlessly.</p>
+
+					<h4>2. Data Cleaning and Preparation:</h4>
+					<p>Data is often messy and inconsistent, but pandas provides a plethora of tools for cleaning and transforming data. Whether you need to handle missing values, remove duplicates, or reshape your data, pandas offers functions that streamline these tasks.</p>
+
+					<h4>3. Data Analysis and Exploration:</h4>
+					<p>Pandas makes it easy to explore your data using various methods and functions. You can perform basic statistical analyses, aggregation, filtering, and sorting with just a few lines of code. This facilitates gaining insights and understanding the underlying patterns in your data.</p>
+
+					<h4>4. Integration with Other Libraries:</h4>
+					<p>Pandas seamlessly integrates with other libraries commonly used in data science and analysis, such as Matplotlib for data visualization and scikit-learn for machine learning. This ecosystem allows you to create end-to-end data pipelines using familiar tools.</p>
+
+					<h3>Getting Started with Pandas</h3>
+					<h4>Installation:</h4>
+					<p>To begin using pandas, you need to install it using the Python package manager, pip. Open your terminal or command prompt and enter the following command:</p>
+
+					<div class="card text-bg-secondary mb-3" style="max-width: 18rem;">
+						<div class="card-header">Code</div>
+						<div class="card-body">
+						  <p class="card-text">
+						  	<code>
+						  		<pre>
+pip install pandas
+</pre>
+</code>
+</p>
+  </div>
+</div>
+
+<h4>Your First Encounter with Pandas:</h4>
+<p><strong>Importing Pandas:</strong></p>
+<p>Before you can use pandas, you need to import it in your Python script or Jupyter Notebook:</p>
+
+<div class="card text-bg-secondary mb-3" style="max-width: 18rem;">
+	<div class="card-header">Code</div>
+	<div class="card-body">
+	  <p class="card-text">
+	  <code>
+	  <pre>
+import pandas as pd
+</pre>
+</code>
+</p>
+  </div>
+</div>
+
+
+<h4>Creating a DataFrame:</h4>
+<p>Let's say you have a CSV file named "data.csv" with columns "Name," "Age," and "Country." You can create a DataFrame from this CSV file:</p>
+
+<div class="card text-bg-secondary mb-3" style="max-width: 18rem;">
+	<div class="card-header">Code</div>
+	<div class="card-body">
+	  <p class="card-text">
+	  <code>
+	  <pre>
+data = pd.read_csv('data.csv')
+</pre>
+</code>
+</p>
+  </div>
+</div>
+
+<h3>Basic Operations:</h3>
+<p>Now that you have your DataFrame, you can perform various operations. For instance, you can display the first few rows of the DataFrame using the head() function:</p>
+
+<div class="card text-bg-secondary mb-3" style="max-width: 18rem;">
+	<div class="card-header">Code</div>
+	<div class="card-body">
+	  <p class="card-text">
+	  <code>
+	  <pre>
+print(data.head())
+</pre>
+</code>
+</p>
+  </div>
+</div>
+
+<p>Python pandas has revolutionized the way we work with data. With its intuitive data structures and functions, pandas empowers data professionals and enthusiasts to explore, clean, transform, and analyze data with ease. Whether you're dealing with financial data, scientific data, or any other type of data, pandas offers the tools you need to turn raw information into valuable insights.</p>
+
+<p>As you embark on your journey with pandas, remember that practice is key. Experiment with different functions, explore the extensive documentation, and embrace the power that pandas brings to your data manipulation endeavors.</p>
+
+<p>So, welcome to the world of pandas—a world where data becomes your canvas, and insights are waiting to be unveiled!</p>
+
+
 					{% endblock %}
 				</div>
 				

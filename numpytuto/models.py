@@ -1,5 +1,6 @@
 from django.db import models
 from ckeditor.fields import RichTextField
+from django.urls import reverse
 
 # Create your models here.
 
@@ -12,3 +13,6 @@ class numpytutorial(models.Model):
 
     def __str__(self):
         return self.title
+    
+    def get_absolute_url(self):
+        return reverse("numpy:numpycontent", args=[self.id])

@@ -5,6 +5,6 @@ from . import views
 app_name = 'numpy'
 
 urlpatterns = [
-    path('', views.home),
-    path('content/<int:pk>/', views.content, name='numpycontent'),
+    path('', views.home, name='numpy'),
+    path('content/<slug:slug>/', views.content, name='numpycontent'),
 ]

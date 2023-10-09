@@ -21,13 +21,46 @@
 		</style>
 
 		{% comment %} navbar section start {% endcomment %}
-		{% include 'nav_main.html' %}
-		{% include 'content/nav_content.html' %}
+		
+		<div class="d-none d-md-block">
+			{% include 'nav_main.html' %}
+			{% include 'content/nav_content.html' %}
+		</div>
+		
 		{% comment %} navbar section end {% endcomment %}
 
+		{% comment %} mobile navbar star  {% endcomment %}
+
+		<nav class="navbar navbar-expand-lg bg-body-tertiary d-md-none fixed-top">
+			<div class="container-fluid">
+				<a class="navbar-brand text-success" href="/home"><b>DSMLschool</b></a>
+				<a class="btn" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+					<span class="navbar-toggler-icon"></span>
+				</a>
+				
+				<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+					<div class="offcanvas-header">
+						<h5 class="offcanvas-title" id="offcanvasExampleLabel">NumPy</h5>
+						<button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+					</div>
+					
+					<div class="offcanvas-body">
+						<ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 90px;">
+							{% for post in posts %}
+							<li class="nav-item border-bottom">
+								<a class="nav-link active" aria-current="page" href="{% url 'numpy:numpycontent' post.slug %}">{{ post.title }}</a>
+							</li>
+							{% endfor %}
+						</ul>
+					</div>
+				</div>
+			</div>
+		</nav>
+
+		{% comment %} mobile navbar end {% endcomment %}
 		<div class="container-fluid">
 			<div class="row">
-				<div class="col-md-2 border-end">
+				<div class="col-md-2 border-end d-none d-md-block">
 					<h3 class="my-5">
 						NumPy Tutorial
 					</h3>
@@ -35,8 +68,8 @@
 					<div class="sidebar-sticky">
 						<table class="table">
 							{% for post in posts %}
-							<tr class="table-active">
-								<td><a class="nav-link py-0 my-0 text-dark" href="{% url 'py:content' post.pk %}">{{ post.title }}</a></td>
+							<tr class="{% if post.slug == request.resolver_match.kwargs.slug %}table-active{% endif %}">
+								<td><a class="nav-link py-0 my-0 text-dark" href="{% url 'numpy:numpycontent' post.slug %}">{{ post.title }}</a></td>
 							</tr>							
 							{% endfor %}
 						</table>
@@ -46,7 +79,99 @@
 
 				<div class="col-md-7">
 					{% block content %}
-					<p>Hello NumPy </p>
+					<div class="pt-2>"</div>
+					
+						<h2 class="pt-5 pb-3 mt-3">Exploring NumPy: A Foundation for Efficient Data Manipulation in Python</h2>
+						<p>In the realm of scientific computing and data analysis, Python's NumPy library stands tall as a fundamental tool. With its array-based approach to handling data, NumPy provides the backbone for countless applications, ranging from mathematical operations to machine learning. In this article, we'll delve into the world of NumPy, exploring its key features, benefits, and how you can harness its power.</p>
+
+						<h3>What is NumPy?</h3>
+						<p>NumPy, short for "Numerical Python," is an open-source Python library that provides support for working with arrays, matrices, and a wide range of mathematical functions. It was created by Travis Oliphant in 2005 as an extension of the Numeric library, aiming to provide a more flexible and efficient framework for numerical computations.</p>
+
+						<h3>Why Choose NumPy?</h3>
+						<h4>1. Efficient Array Operations:</h4>
+						<p>NumPy's core feature is the ndarray (n-dimensional array) data structure, which enables you to perform element-wise operations and mathematical computations on entire arrays. This leads to faster execution times compared to traditional Python lists, as operations are implemented in C under the hood.</p>
+
+						<h4>2. Broadcasting:</h4>
+						<p>NumPy introduces broadcasting, a powerful concept that allows operations between arrays of different shapes and dimensions. Broadcasting eliminates the need for explicit looping and enables concise and readable code.</p>
+
+						<h4>3. Comprehensive Mathematical Functions:</h4>
+						<p>NumPy offers an extensive collection of mathematical functions, ranging from basic arithmetic operations to complex linear algebra and statistical computations. Whether you're calculating mean, median, or performing singular value decomposition, NumPy has you covered.</p>
+
+						<h4>4. Integration with Other Libraries:</h4>
+						<p>NumPy seamlessly integrates with other scientific computing libraries, such as SciPy for advanced mathematical functions, Matplotlib for data visualization, and scikit-learn for machine learning. This ecosystem enables you to build powerful data analysis and machine learning pipelines.</p>
+
+						<h3>Getting Started with NumPy</h3>
+						<h4>Installation:</h4>
+						<p>To begin using NumPy, you need to install it using the Python package manager, pip. Open your terminal or command prompt and enter the following command:</p>
+
+						<div class="card text-bg-secondary mb-3" style="max-width: 18rem;">
+							<div class="card-header">Code</div>
+							<div class="card-body">
+								<p class="card-text">
+									<code>
+										<pre>
+pip install numpy
+</pre>
+</code>
+</p>
+  </div>
+</div>
+
+
+<h3>Your First Encounter with NumPy:</h3>
+<h4>Importing NumPy:</h4>
+<p>Before you can use NumPy, you need to import it in your Python script or Jupyter Notebook:</p>
+
+<div class="card text-bg-secondary mb-3" style="max-width: 18rem;">
+	<div class="card-header">Code</div>
+	<div class="card-body">
+	  <p class="card-text">
+	  <code>
+	  <pre>
+import numpy as np
+</pre>
+</code>
+</p>
+  </div>
+</div>
+
+<h4>Creating NumPy Arrays:</h4>
+<p>You can create NumPy arrays from Python lists or directly using NumPy functions. Here's how you can create a simple 1D array:</p>
+
+<div class="card text-bg-secondary mb-3" style="max-width: 18rem;">
+	<div class="card-header">Code</div>
+	<div class="card-body">
+	  <p class="card-text">
+	  <code>
+	  <pre>
+arr = np.array([1, 2, 3, 4, 5])
+</pre>
+</code>
+</p>
+  </div>
+</div>
+
+<h4>Basic Operations:</h4>
+<p>Now that you have your NumPy array, you can perform various operations. For example, you can perform element-wise multiplication:</p>
+
+<div class="card text-bg-secondary mb-3" style="max-width: 18rem;">
+	<div class="card-header">Code</div>
+	<div class="card-body">
+	  <p class="card-text">
+	  <code>
+	  <pre>
+result = arr * 2
+</pre>
+</code>
+</p>
+  </div>
+</div>
+
+<p>Python NumPy is the foundation upon which countless data analysis and scientific computing tasks are built. With its efficient array operations, broadcasting capabilities, and extensive mathematical functions, NumPy empowers researchers, scientists, and programmers to tackle complex numerical challenges.</p>
+
+<p>As you dive into NumPy, remember that practice is the key to mastery. Experiment with different array operations, explore the various mathematical functions, and embrace the efficiency and elegance that NumPy brings to your computational endeavors.</p>
+
+<p>So, welcome to the world of NumPy—a world where numbers transform into arrays, and arrays unlock the door to a universe of possibilities!</p>
 					{% endblock %}
 				</div>
 				

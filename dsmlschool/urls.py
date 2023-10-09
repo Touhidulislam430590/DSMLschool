@@ -16,12 +16,24 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from django.contrib.sitemaps.views import sitemap
+from pytuto.sitemap import PytutoSitemap
+from numpytuto.sitemap import NumpySitemap
+from pandastuto.sitemap import PandasSitemap
+from matplotlibtuto.sitemap import MatplotSitemap
+
 
 # Django Admin Panel Customization
 admin.site.site_header = 'DSMLschool Admin'
 admin.site.site_title = 'Admin Panel'
 admin.site.index_title = 'Data Science Machine Learning School Administration Panel'
 
+sitemaps = {
+    'python' : PytutoSitemap,
+    'numpy' : NumpySitemap,
+    'pandas' : PandasSitemap,
+    'matplot' : MatplotSitemap,
+}
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -29,4 +41,9 @@ urlpatterns = [
     path('python/', include('pytuto.urls')),
     path('numpy/', include('numpytuto.urls')),
     path('pandas/', include('pandastuto.urls')),
+    path('matplot/', include('matplotlibtuto.urls')),
+
+    path('sitemap.xml', sitemap, {'sitemaps':sitemaps}),
 ]
+
+handler404 = 'home.views.error_404'

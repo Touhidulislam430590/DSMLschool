@@ -1,18 +1,39 @@
 <!doctype html>
+{% load static %}
 <html lang="en">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>DSMLschool | {% block title %} {% endblock title %} </title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+        
+        <!-- Font awesome link -->
+        <link href="{% static 'fontawesomefree/css/fontawesome.css' %}" rel="stylesheet" type="text/css">
+        <link href="{% static 'fontawesomefree/css/brands.css' %}" rel="stylesheet" type="text/css">
+        <link href="{% static 'fontawesomefree/css/solid.css' %}" rel="stylesheet" type="text/css">
+        
+        
+        <link href="{% static 'css/banner.css' %}" rel="stylesheet" type="text/css">
     </head>
 
     <body>
+        <style>
+            .bg-overlay {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-size: cover;
+                opacity: 0.2;
+            }
+        </style>
         
         {% comment %} nav bar start here {% endcomment %}
 
         {% include 'nav_main.html' %}
-
+        {% include 'banner.html' %}
+        
         {% comment %} navbar end here {% endcomment %}
 
 
@@ -26,8 +47,8 @@
 
         {% comment %} footer section start here  {% endcomment %}
         
-        {% include 'footer.html' %}
-        
+         {% include 'footer.html' %}
+         
         {% comment %} footer section end here  {% endcomment %}
 
 

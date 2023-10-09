@@ -7,7 +7,7 @@ def home(request):
     posts = pandastutorial.objects.all()
     return render(request, "content/pandas/pandashome.html", {'posts':posts})
 
-def content(request, pk):
+def content(request, slug):
     posts = pandastutorial.objects.all()
-    post = get_object_or_404(pandastutorial, pk=pk)
+    post = get_object_or_404(pandastutorial, slug=slug)
     return render(request, 'content/pandas/pandascontent.html', {'content':post, 'posts':posts})

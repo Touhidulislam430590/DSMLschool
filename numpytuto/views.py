@@ -7,8 +7,8 @@ def home(request):
     posts = numpytutorial.objects.all()
     return render(request, "content/numpy/numpyhome.html", {'posts':posts})
 
-def content(request, pk):
+def content(request, slug):
     posts = numpytutorial.objects.all()
-    post = get_object_or_404(numpytutorial, pk=pk)
+    post = get_object_or_404(numpytutorial, slug=slug)
     return render(request, 'content/numpy/numpycontent.html', {'content':post, 'posts':posts})
 

@@ -18,17 +18,90 @@
 				margin: 0;
 				padding: 0;
 			}
+			
+				.overlay-menu {
+					display: none;
+					position: fixed;
+					top: 0;
+					left: 0;
+					width: 100%;
+					height: 100%;
+					background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent overlay */
+					z-index: 1000; /* Higher z-index to overlay other content */
+				}
+			
+				.sidebar {
+					position: fixed;
+					top: 0;
+					left: -250px; /* Sidebar is initially off-screen */
+					width: 250px;
+					height: 100%;
+					background-color: white;
+					padding: 20px;
+					z-index: 1001; /* Higher z-index to overlay the overlay-menu */
+					transition: left 0.3s ease-in-out; /* Add a smooth slide-in effect */
+				}
+			
+				.navbar-toggler:focus + .overlay-menu .sidebar {
+					left: 0; /* Show the sidebar when the toggle button is focused */
+				}
+			
+				.sidebar ul {
+					list-style: none;
+					padding: 0;
+				}
+			
+				.sidebar ul li {
+					margin-bottom: 10px;
+				}
+			
 		</style>
 		
 		
 		{% comment %} navbar section start {% endcomment %}
-		{% include 'nav_main.html' %}
-		{% include 'content/nav_content.html' %}
+		<div class="d-none d-md-block">
+			{% include 'nav_main.html' %}
+			{% include 'content/nav_content.html' %}
+		</div>
 		{% comment %} navbar section end {% endcomment %}
+
+		<!-- sidebar for mobile  -->
+		<nav class="navbar navbar-expand-lg bg-body-tertiary d-md-none fixed-top">
+			<div class="container-fluid">
+				<a class="navbar-brand text-success" href="/home"><b>DSMLschool</b></a>
+				<a class="btn" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+					<span class="navbar-toggler-icon"></span>
+				</a>
+				
+				<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+					<div class="offcanvas-header">
+						<h5 class="offcanvas-title" id="offcanvasExampleLabel">Python</h5>
+						<button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+					</div>
+					
+					<div class="offcanvas-body">
+						<ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 90px;">
+							{% for post in posts %}
+							<li class="nav-item border-bottom">
+								<a class="nav-link active" aria-current="page" href="{% url 'py:content' post.slug %}">{{ post.title }}</a>
+							</li>
+							{% endfor %}
+						</ul>
+					</div>
+				</div>
+			</div>
+		</nav>
+
+
+
+		
+		
+		
+		<!-- sidebar for mobile  -->
 
 		<div class="container-fluid">
 			<div class="row">
-				<div class="col-md-2 border-end">
+				<div class="col-md-2 border-end d-none d-md-block">
 					<h3 class="my-5">
 						Python Tutorial
 					</h3>
@@ -36,8 +109,8 @@
 					<div class="sidebar-sticky">
 						<table class="table">
 							{% for post in posts %}
-							<tr class="table-active">
-								<td><a class="nav-link py-0 my-0 text-dark" href="{% url 'py:content' post.pk %}">{{ post.title }}</a></td>
+							<tr class="{% if post.slug == request.resolver_match.kwargs.slug %}table-active{% endif %}">
+								<td class="border-bottom"><a class="nav-link py-0 my-0 text-dark" href="{% url 'py:content' post.slug %}">{{ post.title }}</a></td>
 							</tr>							
 							{% endfor %}
 						</table>
@@ -47,7 +120,56 @@
 
 				<div class="col-md-7">
 					{% block content %}
-					<p>Hello Python </p>
+					<div class="pt-2 d-md-none  mb-3"></div>
+					
+					<h2 class="pt-5 pb-3">Introduction of Python</h2>
+					<p>In the vast landscape of programming languages, Python stands out as a versatile, readable, and powerful tool for both beginners and experts alike. Known for its simplicity and elegance, Python has gained immense popularity across various domains, from web development and data analysis to artificial intelligence and scientific research. In this article, we'll take a closer look at what makes Python special and why it's a fantastic choice for those entering the world of programming.</p>
+					<h3>What is Python?</h3>
+					<p>Python is a high-level, interpreted programming language that emphasizes clean and readable code. It was created by Guido van Rossum and first released in 1991. Python's design philosophy emphasizes code readability and a clear, straightforward syntax that allows programmers to express their ideas effectively. This readability contributes to Python's reduced learning curve, making it an ideal language for beginners.</p>
+
+
+					<h3>Why Choose Python?</h3>
+					<h4>1. Simplicity and Readability:</h4>
+					<p>Python's syntax is concise and easy to understand, resembling natural language more than traditional programming languages. This readability reduces the chances of syntax errors and makes debugging and maintenance more straightforward.</p>
+
+					<h4>2. Versatility:</h4>
+					<p>Python is a general-purpose programming language, meaning it can be used for a wide range of applications. From web development and scripting to data analysis, scientific computing, machine learning, and more, Python has a plethora of libraries and frameworks that cater to various needs.</p>
+
+					<h4>3. Large and Active Community:</h4>
+					<p>Python boasts a vast and active community of developers, educators, and enthusiasts. This community contributes to the development of packages, libraries, and resources that can be incredibly valuable for learning and problem-solving.</p>
+
+					<h4>4. Cross-Platform Compatibility:</h4>
+					<p>Python is compatible with major operating systems, such as Windows, macOS, and various Linux distributions. This cross-platform compatibility ensures that programs written in Python can run on different environments without major modifications.</p>
+
+					<h4>5. Extensive Standard Library:</h4>
+					<p>Python's standard library provides a rich collection of modules and functions that simplify complex tasks. Whether you're working with file I/O, networking, or regular expressions, chances are there's a module in the standard library that can help you get the job done efficiently.</p>
+
+					<h2>Getting Started with Python</h2>
+					<h3>Installation:</h3>
+					<p>To get started with Python, you need to install it on your computer. You can download the latest version of Python from the official website (python.org) and follow the installation instructions for your operating system.</p>
+
+
+					<h3>Your First Python Program:</h3>
+					<h5>Let's write a simple "Hello, World!" program in Python to understand how easy it is to get started:</h5>
+
+					<div class="card text-bg-secondary mb-3" style="max-width: 18rem;">
+						<div class="card-header">Code</div>
+						<div class="card-body">
+						  <p class="card-text">
+						  <code>
+						  <pre>
+print("Hello, World!")
+</pre>
+</code>
+</p>
+  </div>
+</div>
+
+				<p>Congratulations! You've just written and executed your first Python program.</p>
+
+					<p>Python's simplicity, versatility, and strong community support make it an excellent choice for beginners and experienced programmers alike. Whether you're interested in building web applications, diving into data science, or exploring the realms of machine learning and artificial intelligence, Python has the tools and resources to support your journey. As you continue your programming adventure, remember that the key to mastering Python, like any language, lies in practice and exploration.</p>
+
+					<p>So, welcome to the world of Python programming—a realm of creativity, problem-solving, and endless possibilities!</p>
 					{% endblock %}
 				</div>
 				

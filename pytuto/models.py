@@ -1,9 +1,10 @@
 from django.db import models
 from ckeditor.fields import RichTextField
+from django.urls import reverse
 
 # Create your models here.
 
-class tutorial(models.Model):
+class pytutorial(models.Model):
     title = models.CharField(max_length=50)
     slug = models.SlugField(max_length=50, null=True, default=None)
     content = RichTextField()
@@ -12,5 +13,11 @@ class tutorial(models.Model):
 
     def __str__(self):
         return self.title
+    
+    def get_absolute_url(self):
+        return reverse("py:content", args=[str(self.id)])
+    
+
+
     
 

@@ -38,12 +38,19 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+    'django.contrib.sitemaps',
+    
     'pytuto',
     'home',
     'numpytuto',
     'pandastuto',
+    'matplotlibtuto',
 
     'ckeditor',
+    'pygments',
+    'fontawesomefree',
+
+    
     'django_check_seo',
     'cms',
     'menus',

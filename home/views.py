@@ -3,6 +3,10 @@ from .models import ContactModel
 
 # Create your views here.
 
+def error_404(request, exception):
+    return render(request, 'home/404.html')
+
+
 def homepage(request):
     return render(request, 'home/homepage.html')
 
